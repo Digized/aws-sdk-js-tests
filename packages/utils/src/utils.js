@@ -16,15 +16,13 @@ export const getV3Response = async (clientParams) => {
   return client.listTables({});
 };
 
-export const getV2BrowserResponse = async () => {
-  // Initialize the Amazon Cognito credentials provider
-  AWS.config.region = REGION;
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: IDENTITY_POOL_ID,
+export const getV2BrowserResponse = async () =>
+  getV2Response({
+    region: REGION,
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: IDENTITY_POOL_ID,
+    }),
   });
-
-  return getV2Response({ region: REGION });
-};
 
 export const getV3BrowserResponse = async () =>
   getV3Response({
