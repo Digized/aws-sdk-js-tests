@@ -19,9 +19,10 @@ export const getV3Response = async (clientParams) => {
 export const getV2BrowserResponse = async () =>
   getV2Response({
     region: REGION,
-    credentials: new AWS.CognitoIdentityCredentials({
+    credentials: await new AWS.CognitoIdentityCredentials({
+      region: REGION,
       IdentityPoolId: IDENTITY_POOL_ID,
-    }),
+    }).getPromise(),
   });
 
 export const getV3BrowserResponse = async () =>
